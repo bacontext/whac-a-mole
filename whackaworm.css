@@ -1,0 +1,33 @@
+head{text-align:center;}
+body{
+     background-color:black;
+}
+
+#Content {	
+	z-index:1;
+	left:5%;
+	position:relative;
+	float:left;
+	height:100%;
+	width:90%;
+	color:black;
+	background-color:#E8E8E8;
+        border-style:solid;
+        display:block;
+}
+
+#Game{
+position:relative;
+float:left;
+left:40%;
+height:100%;
+width:30%;
+}
+
+.images{
+float:left;
+padding:0%;
+border:none;
+}
+
+
