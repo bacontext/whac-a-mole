@@ -1,4 +1,19 @@
-var imgArr, hole1, hole2, hole3, hole4, hole5, hole6, hole7, hole8, hole9, worm, score, randomNumber,previousRandomNum;
+var worm, score, randomNumber,previousRandomNum;
+var timeout = 60000;
+var functionName = "click";
+var imgArr =
+[
+	new Image(),
+	new Image(),
+	new Image(),
+	new Image(),
+	new Image(),
+	new Image(),
+	new Image(),
+	new Image(),
+	new Image()
+];
+
 
 function init(){
 	score = 0;
@@ -6,12 +21,12 @@ function init(){
 	randomNumber = 0;
 	cacheImages();
 	
-	for(i=0;i<imgArr.length;i++){
-		addEvent(imgArr[i], "click", randomize, false);
+	for(i=0; i < imgArr.length; i++){
+		addEvent(imgArr[i], click, randomize, false);
 	}
 
 	play();
-	setTimeout("endGame()",60000);
+	setTimeout("endGame()", timeout);
 
 }
 
@@ -58,12 +73,10 @@ function play()
 function endGame(){
 	
 	for(i=0; i<imgArr.length;i++){
-		removeEventHandler(imgArr[i], "click", randomize);
-	}
-	
-	for(var i = 0; i<imgArr.length; i++){
+		removeEventHandler(imgArr[i], functionName, randomize);
 		imgArr[i].src = "hole.png";
 	}
+	
 	alert("Game Over! Final Score: " + score);
 	var btn = document.getElementById("startBtn");
 	btn.style.display = 'block';
@@ -77,8 +90,7 @@ function removeEventHandler(elem,eventType,handler) {
 }
 
 function cacheImages()
-{  
-  
+{    
     //Cache all the image tags
     hole1 = document.getElementById("hole1");
     hole2 = document.getElementById("hole2");
