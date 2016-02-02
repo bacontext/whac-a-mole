@@ -71,11 +71,11 @@ function play(){
 }
 
 function endGame(){
-	for(i=0; i<holes.length;i++){
+	for(i=0; i < holes.length;i++){
 		removeEventHandler(holes[i], functionName, randomize);
 	}
 	
-	for(var i = 0; i<holes.length; i++){
+	for(var i = 0; i < holes.length; i++){
 		holes[i].src = hole;
 	}
 	alert("Game Over! Final Score: " + score);
