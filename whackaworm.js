@@ -1,4 +1,4 @@
-var holes, worm, score, randomNum, previousRandomNum, timeout, functionName, imgName;
+var holes, worm, hole, score, randomNum, previousRandomNum, timeout, functionName;
 
 function init(){
 	initializeAssets();
@@ -18,7 +18,7 @@ function initializeAssets(){
 	score = 0;
 	previousRandomNum = 0;
 	randomNum = 0;
-	imgName = "hole.png";
+	hole = "hole.png";
 	worm = "wormHoleImage.png";
 }
 
@@ -66,7 +66,7 @@ function randomize(e){
 function play(){
 	generateNum();
 	holes[randomNum].src = worm;
-	holes[previousRandomNum].src = imgName;
+	holes[previousRandomNum].src = hole;
 	previousRandomNum = randomNum;
 }
 
@@ -76,7 +76,7 @@ function endGame(){
 	}
 	
 	for(var i = 0; i<holes.length; i++){
-		holes[i].src = imgName;
+		holes[i].src = hole;
 	}
 	alert("Game Over! Final Score: " + score);
 	var btn = document.getElementById("startBtn");
