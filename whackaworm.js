@@ -52,8 +52,8 @@ function addEvent(objName, type, fnName, Cap) {
 	  }
 }
 
-function randomize(e){
-	var source = e.target ||event.srcElement;
+function randomize(event){
+	var source = event.target || event.srcElement;
 	var img = source.src;
 
 	if(img.substring(img.lastIndexOf("/")+1) == worm){
