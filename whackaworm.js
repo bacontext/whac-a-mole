@@ -1,34 +1,14 @@
-var imgArr;
-var hole1;
-var hole2;
-var hole3;
-var hole4;
-var hole5;
-var hole6;
-var hole7;
-var hole8;
-var hole9;
-var worm;
-var score;
-var randomNumber;
-var previousRandomNum;
+var imgArr, hole1, hole2, hole3, hole4, hole5, hole6, hole7, hole8, hole9, worm, score, randomNumber,previousRandomNum;
 
-function init()
-{
+function init(){
 	score = 0;
 	previousRandomNum = 0;
 	randomNumber = 0;
 	cacheImages();
 	
-	addEvent(hole1, "click", randomize, false);
-	addEvent(hole2, "click", randomize, false);
-	addEvent(hole3, "click", randomize, false);
-	addEvent(hole4, "click", randomize, false);
-	addEvent(hole5, "click", randomize, false);
-	addEvent(hole6, "click", randomize, false);
-	addEvent(hole7, "click", randomize, false);
-	addEvent(hole8, "click", randomize, false);
-	addEvent(hole9, "click", randomize, false);
+	for(i=0;i<imgArr.length;i++){
+		addEvent(imgArr[i], "click", randomize, false);
+	}
 
 	play();
 	setTimeout("endGame()",60000);
@@ -76,18 +56,12 @@ function play()
 }
 
 function endGame(){
-	removeEventHandler(hole1, "click", randomize);
-	removeEventHandler(hole2, "click", randomize);
-	removeEventHandler(hole3, "click", randomize);
-	removeEventHandler(hole4, "click", randomize);
-	removeEventHandler(hole5, "click", randomize);
-	removeEventHandler(hole6, "click", randomize);
-	removeEventHandler(hole7, "click", randomize);
-	removeEventHandler(hole8, "click", randomize);
-	removeEventHandler(hole9, "click", randomize);
 	
-	for(var i = 0; i<imgArr.length; i++)
-	{
+	for(i=0; i<imgArr.length;i++){
+		removeEventHandler(imgArr[i], "click", randomize);
+	}
+	
+	for(var i = 0; i<imgArr.length; i++){
 		imgArr[i].src = "hole.png";
 	}
 	alert("Game Over! Final Score: " + score);
