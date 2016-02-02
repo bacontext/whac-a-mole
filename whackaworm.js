@@ -1,96 +1,28 @@
-var worm, score, randomNumber,previousRandomNum;
-var timeout = 60000;
-var functionName = "click";
-var imgArr =
-[
-	new Image(),
-	new Image(),
-	new Image(),
-	new Image(),
-	new Image(),
-	new Image(),
-	new Image(),
-	new Image(),
-	new Image()
-];
-
+var holes, worm, score, randomNum, previousRandomNum, timeout, functionName, imgName;
 
 function init(){
-	score = 0;
-	previousRandomNum = 0;
-	randomNumber = 0;
+	initializeAssets();
 	cacheImages();
 	
-	for(i=0; i < imgArr.length; i++){
-		addEvent(imgArr[i], click, randomize, false);
+	for(i=0; i < holes.length;i ++){
+		addEvent(holes[i], functionName, randomize, false);
 	}
 
 	play();
 	setTimeout("endGame()", timeout);
-
 }
 
-function generateNum()
-{
-	randomNumber = Math.floor(Math.random()*10);
-	while(previousRandomNum == randomNumber || randomNumber == 9){
-		randomNumber = Math.floor(Math.random()*10);
-	}
+function initializeAssets(){
+	timeout = 60000;
+	functionName = "click";
+	score = 0;
+	previousRandomNum = 0;
+	randomNum = 0;
+	imgName = "hole.png";
+	worm = "wormHoleImage.png";
 }
 
-function addEvent(objName, type, fnName, Cap) {
-
-  if(objName.attachEvent)
-  {
-    objName.attachEvent("on"+type,fnName);
-  }
-  else if(objName.addEventListener)
-  {
-    objName.addEventListener(type,fnName,Cap);
-  }
-}
-
-function randomize(e)
-{
-	var source = e.target ||event.srcElement;
-	var img = source.src;
-
-	if(img.substring(img.lastIndexOf("/")+1) == worm){
-
-	score+=10;
-	play();
-	}
-}
-
-function play()
-{
-	generateNum();
-	imgArr[randomNumber].src = worm;
-	imgArr[previousRandomNum].src = "hole.png";
-	previousRandomNum = randomNumber;
-}
-
-function endGame(){
-	
-	for(i=0; i<imgArr.length;i++){
-		removeEventHandler(imgArr[i], functionName, randomize);
-		imgArr[i].src = "hole.png";
-	}
-	
-	alert("Game Over! Final Score: " + score);
-	var btn = document.getElementById("startBtn");
-	btn.style.display = 'block';
-}
-
-function removeEventHandler(elem,eventType,handler) {
- if (elem.removeEventListener) 
-    elem.removeEventListener (eventType,handler,false);
- if (elem.detachEvent)
-    elem.detachEvent ('on'+eventType,handler); 
-}
-
-function cacheImages()
-{    
+function cacheImages(){
     //Cache all the image tags
     hole1 = document.getElementById("hole1");
     hole2 = document.getElementById("hole2");
@@ -101,9 +33,61 @@ function cacheImages()
     hole7 = document.getElementById("hole7");
     hole8 = document.getElementById("hole8");
     hole9 = document.getElementById("hole9");
-	worm = "wormHoleImage.png";
+	holes = [hole1, hole2, hole3, hole4 ,hole5 ,hole6 ,hole7 ,hole8 ,hole9];
+}
+
+function generateNum(){
+	randomNum = Math.floor(Math.random()*10);
+	while(previousRandomNum == randomNum || randomNum == 9){
+		randomNum = Math.floor(Math.random()*10);
+	}
+}
+
+function addEvent(objName, type, fnName, Cap) {
+	  if(objName.attachEvent){
+		objName.attachEvent("on"+type,fnName);
+	  }
+	  else if(objName.addEventListener){
+		objName.addEventListener(type,fnName,Cap);
+	  }
+}
+
+function randomize(e){
+	var source = e.target ||event.srcElement;
+	var img = source.src;
+
+	if(img.substring(img.lastIndexOf("/")+1) == worm){
+
+	score+=10;
+	play();
+	}
+}
+
+function play(){
+	generateNum();
+	holes[randomNum].src = worm;
+	holes[previousRandomNum].src = imgName;
+	previousRandomNum = randomNum;
+}
+
+function endGame(){
+	for(i=0; i<holes.length;i++){
+		removeEventHandler(holes[i], functionName, randomize);
+	}
 	
-	imgArr = [hole1, hole2, hole3, hole4 ,hole5 ,hole6 ,hole7 ,hole8 ,hole9];
+	for(var i = 0; i<holes.length; i++){
+		holes[i].src = imgName;
+	}
+	alert("Game Over! Final Score: " + score);
+	var btn = document.getElementById("startBtn");
+	btn.style.display = 'block';
+}
+
+function removeEventHandler(elem, eventType, handler) {
+ if (elem.removeEventListener) 
+    elem.removeEventListener (eventType, handler, false);
+ if (elem.detachEvent)
+    elem.detachEvent ('on'+eventType, handler); 
 }
 
 function startGame(){
