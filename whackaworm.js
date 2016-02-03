@@ -58,9 +58,9 @@ function endGame(){
 }
 
 function generateNum(){
-	randomNum = Math.floor(Math.random()*10);
+	randomNum = Math.floor(Math.random()*numOfHoles);
 	while(previousRandomNum == randomNum || randomNum == numOfHoles){
-		randomNum = Math.floor(Math.random()*10);
+		randomNum = Math.floor(Math.random()*numOfHoles);
 	}
 }
 
