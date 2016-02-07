@@ -58,11 +58,11 @@ function endGame(){
 }
 
 function generateNum(){
-	temp  = Math.floor(Math.random()*numOfHoles);
-	while(temp == randomNum){
-		temp = Math.floor(Math.random()*numOfHoles);
+	tempRandomNum  = Math.floor(Math.random()*numOfHoles);
+	while(tempRandomNum == randomNum){
+		tempRandomNum = Math.floor(Math.random()*numOfHoles);
 	}
-	return temp;
+	return tempRandomNum;
 }
 
 function play(){
