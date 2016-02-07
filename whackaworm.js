@@ -1,4 +1,4 @@
-var btn, endGameMsg, eventFunctionName, hole, holes, gamePieceImgName, numOfHoles, randomNum, points, previousRandomNum, startBtnName, score, timeout, worm;
+var btn, endGameMsg, eventFunctionName, hole, holes, gamePieceImgName, numOfHoles, randomNum, points, startBtnName, score, timeout, worm;
 
 function init(){
 	initializeAssets();
@@ -17,7 +17,6 @@ function initializeAssets(){
 	timeout = 60000;
 	clickAddEventFunction = "click";
 	score = 0;
-	previousRandomNum = 0;
 	randomNum = 0;
 	hole = "hole.png";
 	worm = "wormHoleImage.png";
@@ -58,17 +57,17 @@ function endGame(){
 }
 
 function generateNum(){
+	temp = randomNum;
 	randomNum = Math.floor(Math.random()*numOfHoles);
-	while(previousRandomNum == randomNum || randomNum == numOfHoles){
+	while(temp == randomNum || randomNum == numOfHoles){
 		randomNum = Math.floor(Math.random()*numOfHoles);
 	}
 }
 
 function play(){
+	holes[randomNum].src = hole;
 	generateNum();
 	holes[randomNum].src = worm;
-	holes[previousRandomNum].src = hole;
-	previousRandomNum = randomNum;
 }
 
 function randomize(event){
