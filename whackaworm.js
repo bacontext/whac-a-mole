@@ -51,22 +51,23 @@ function endGame(){
 	for(var i = 0; i < holes.length; i++){
 		holes[i].src = hole;
 	}
+	
 	alert(endGameMsg+ score);
 	var btn = document.getElementById(startBtnName);
 	btn.style.display = 'block';
 }
 
 function generateNum(){
-	temp = randomNum;
-	randomNum = Math.floor(Math.random()*numOfHoles);
-	while(temp == randomNum || randomNum == numOfHoles){
-		randomNum = Math.floor(Math.random()*numOfHoles);
+	temp  = Math.floor(Math.random()*numOfHoles);
+	while(temp == randomNum){
+		temp = Math.floor(Math.random()*numOfHoles);
 	}
+	return temp;
 }
 
 function play(){
 	holes[randomNum].src = hole;
-	generateNum();
+	randomNum = generateNum();
 	holes[randomNum].src = worm;
 }
 
